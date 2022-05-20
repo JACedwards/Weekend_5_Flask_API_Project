@@ -1,8 +1,14 @@
 {% extends 'components/layout.html' %}
 
+<head>
+    {% block title %}
+    <title>Pokemon</title>
+    {% endblock title %}
+</head>
+
 {% block content%}
 
-<h1>This page will sort pokemon by abilities</h1>
+<h1>Get to know 20 Pokemon</h1>
 
 <table>
     <tr>
@@ -12,8 +18,8 @@
 
     {% for name, url in poke.items() %}
     <tr>
-      <td>{{name}}</td>
-      <td>{{url}}</td>
+      <td>{{name.title()}}</td>
+      <td><a href='{{url}}'>Learn More</a></td>
     </tr>
     {% endfor %}
 
