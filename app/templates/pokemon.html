@@ -1,0 +1,22 @@
+{% extends 'components/layout.html' %}
+
+{% block content%}
+
+<h1>This page will sort pokemon by abilities</h1>
+
+<table>
+    <tr>
+      <th>Pokemon</th>
+      <th>Pokedex page</th>
+    </tr>
+
+    {% for name, url in poke.items() %}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{url}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock content %}

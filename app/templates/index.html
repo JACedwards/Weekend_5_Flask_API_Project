@@ -1,2 +1,12 @@
+{% extends 'components/layout.html' %}
+
+{% block content%}
+
 <h1>Hello, you goobers</h1>
-<p></p>
+<p>{{ greeting }}</p>
+
+{% for student in students %}
+    <p style="text-indent: 10px;">{{student}}</p>
+{% endfor %}
+
+{% endblock content %}

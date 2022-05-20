@@ -9,17 +9,20 @@ from app import app
     #return value of regular python function is what will be displayded on the URL page
 
     #'/' = index page at root of project
+
 from flask import render_template
 
-@app.route('/')
+#API call:  need to import the requests module (which needs to be installed:  pip install requests)
+import requests as r
 
+
+@app.route('/')  #Each @app is for a separate html page
 #2. Return html file from our flask routes
-
-
 def home():   #for home page
     greeting = 'Welcome to flask week, Foxes!'
     print(greeting)
-    return render_template('index.html')  #a call to the render_template function
+    students = ['Sam','Tuesday', 'Vinny', 'Nyx']
+    return render_template('index.html', greeting = greeting, students = students)  #a call to the render_template function
         #so what will be returned is the return value of the render_template() function 
         #Then,pass into render_template function () the name of the html file I am trying to render
         #to check this, make sure in virtual environment,
@@ -33,7 +36,38 @@ def home():   #for home page
         #       the variable "g".
 
 
-#To run, in terminal:
+@app.route('/abilities')
+def abilities():
+    return render_template('abilities.html')
+
+
+@app.route('/pokemon')
+def pokemon():
+    poke = {}
+
+    for i in range(1,21):
+        data = r.get('https://pokeapi.co/api/v2/pokemon/' + str(i))
+        # print(data)
+        if data.status_code == 200:
+            # print('test')
+            data = data.json()
+        else:
+            return "Data source not responding"
+
+        name = data['forms'][0]['name']
+        # # print(name)
+        url =  "https://www.pokemon.com/us/pokedex/" + name
+        # print(url)   
+        poke[name]=url
+
+    return render_template('pokemon.html', poke = poke)
+
+
+
+# 
+
+
+####To run, in terminal:
     #make sure you are in virtual area
     #Type:  flask run
 
