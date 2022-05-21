@@ -8,11 +8,15 @@
 
 {% block content%}
 
-<h1>Hello, you goobers</h1>
+<h1>Hello, Pokemon Neophites!</h1>
 <p>{{ greeting }}</p>
 
-{% for student in students %}
-    <p style="text-indent: 10px;">{{student}}</p>
-{% endfor %}
+<a href="{{ url_for('pokemon') }}">Meet your first 20 Pokemon!</a>
+
+<br>
+<br>
+<a href="{{url_for('abilities') }}">Learn more about Pokemon abilities!</a>
 
 {% endblock content %}
+
+</body>

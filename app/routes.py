@@ -19,10 +19,10 @@ import requests as r
 @app.route('/')  #Each @app is for a separate html page
 #2. Return html file from our flask routes
 def home():   #for home page
-    greeting = 'Welcome to flask week, Foxes!'
+    greeting = 'Calling all Pokemon Newbies.  \nStart Pokemon for Morons here:'
     print(greeting)
-    students = ['Sam','Tuesday', 'Vinny', 'Nyx']
-    return render_template('index.html', greeting = greeting, students = students)  #a call to the render_template function
+    
+    return render_template('index.html', greeting = greeting)  #a call to the render_template function
         #so what will be returned is the return value of the render_template() function 
         #Then,pass into render_template function () the name of the html file I am trying to render
         #to check this, make sure in virtual environment,
