@@ -17,7 +17,7 @@
       <th>Ability</th>
       <th>Effect</th>
     </tr>
-<!-- Start here adding url's   Also need to sort in table still -->
+
     <tr>
       <td>
           <a href="https://www.serebii.net/abilitydex/overgrow.shtml")>Overgrow</a>
@@ -91,10 +91,10 @@
 <table>
     <tr>
       <th>Ability</th>
-      <th>Basic Description</th>
+      <th>Pok&eacute;man</th>
     </tr>
 
-    {% for name, ability in able_dict.items() %}
+    {% for name, ability in able_dict_sorted.items() %}
     <tr>
       <td>{{ability.title()}}</td>
       <td>{{name.title()}}</a></td>
@@ -103,6 +103,8 @@
 
 
 </table>
+
+
 
 
 

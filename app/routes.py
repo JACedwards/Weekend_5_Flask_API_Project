@@ -77,7 +77,11 @@ def abilities():
         able_dict[name_able]=ability
         #print(able_dict)
 
-    return render_template('abilities.html', able_dict = able_dict)
+        x = sorted(able_dict.items(), key =
+             lambda kv:(kv[1], kv[0]))
+        able_dict_sorted = dict(x)
+ 
+    return render_template('abilities.html', able_dict_sorted = able_dict_sorted)
 
 
 
