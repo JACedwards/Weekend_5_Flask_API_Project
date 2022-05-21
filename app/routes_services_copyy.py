@@ -57,7 +57,6 @@ def pokemon():
 
     return render_template('pokemon.html', poke = poke)
 
-
 from .services import getabilities
 @app.route('/abilities')
 def abilities():
