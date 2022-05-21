@@ -8,9 +8,11 @@
 
 {% block content%}
 
-<h1>Get to know 20 Pokemon</h1>
+<h3>Get to know 20 Pokemon</h3>
 
 <table>
+  <col style="width:150px">
+  <col style="width:150px">
     <tr>
       <th>Pokemon</th>
       <th>Pokedex Page</th>
@@ -19,7 +21,7 @@
     {% for name, url in poke.items() %}
     <tr>
       <td>{{name.title()}}</td>
-      <td><a href='{{url}}'>Learn More</a></td>
+      <td style="text-align:center"><a href='{{url}}'>Learn More</a></td>
     </tr>
     {% endfor %}
 

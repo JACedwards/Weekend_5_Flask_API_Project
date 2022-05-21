@@ -19,7 +19,7 @@ import requests as r
 @app.route('/')  #Each @app is for a separate html page
 #2. Return html file from our flask routes
 def home():   #for home page
-    greeting = 'Calling all Pokemon Newbies.  \nStart Pokemon for Morons here:'
+    greeting = 'Calling all Pokmon Newbies.  \nStart Pokemon for Morons here:'
     print(greeting)
     
     return render_template('index.html', greeting = greeting)  #a call to the render_template function
