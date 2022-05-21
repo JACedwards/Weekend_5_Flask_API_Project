@@ -36,11 +36,6 @@ def home():   #for home page
         #       the variable "g".
 
 
-@app.route('/abilities')
-def abilities():
-    return render_template('abilities.html')
-
-
 @app.route('/pokemon')
 def pokemon():
     poke = {}
@@ -61,6 +56,28 @@ def pokemon():
         poke[name]=url
 
     return render_template('pokemon.html', poke = poke)
+
+@app.route('/abilities')
+def abilities():
+    able_dict = {}
+
+    for i in range(1,21):
+        data_able = r.get('https://pokeapi.co/api/v2/pokemon/' + str(i))
+        # print(data)
+        if data_able.status_code == 200:
+            # print('test')
+            data_able = data_able.json()
+        else:
+            return "Data source not responding"
+
+        name_able = data_able['forms'][0]['name']
+        # # print(name_name)
+        ability =  data_able['abilities'][0]['ability']['name']
+        # print(ability)   
+        able_dict[name_able]=ability
+        #print(able_dict)
+
+    return render_template('abilities.html', able_dict = able_dict)
 
 
 

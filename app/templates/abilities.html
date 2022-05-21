@@ -1,3 +1,5 @@
+<!-- Need to sort by type still -->
+
 {% extends 'components/layout.html' %}
 
 <head>
@@ -8,8 +10,100 @@
 
 {% block content%}
 
-<h1>This page will sort pokemon by abilities</h1>
+<h3>20 Pok&eacute;man by Primary Ability</h3>
 
-<p></p>
+<table>
+    <tr>
+      <th>Ability</th>
+      <th>Effect</th>
+    </tr>
+<!-- Start here adding url's   Also need to sort in table still -->
+    <tr>
+      <td>
+          <a href="https://www.serebii.net/abilitydex/overgrow.shtml")>Overgrow</a>
+      </td> 
+      <td>
+          Increases the holder's grass-type moves' damage by 50% when the Pok&eacute;mon has less than 30% of its original hit points remaining.
+      </td>
+    </tr>
+
+    <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/blaze.shtml")>Blaze</a>
+        </td>
+        <td>Increases the holder's grass-type moves' damage by 50% when the Pok&eacute;mon has less than 30% of its original hit points remaining.</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/torrent.shtml")>Torrent</a>
+        </td>
+        <td>Increases the holder's water-type attacks, allowing them to do 150% damage when the Pok&eacute;mon has less than 30% of its original hit points remaining.</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/shielddust.shtml")>Shield-Dust</a>
+        </td>
+        <td>Its dust blocks the additional effects of attacks taken.</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/shedskin.shtml")>Shed-Skin</a>
+        </td>
+        <td>By shedding its skin, it can heal its own status conditions (such as burn, freeze,sleep, paralyze, and poison).</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/compoundeyes.shtml")>Compound-Eyes</a>
+        </td>
+        <td>Raises its accuracy by 30%.</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/swarm.shtml")>Swarm</a>
+        </td>
+        <td>When HP is below 1/3rd its maximum, power of Bug-type moves is increased by 50%.</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/keeneye.shtml")>Keen-Eye</a>
+        </td>
+        <td>Opponent cannot lower this its accuracy. It ignores evasion boosts of the opponent.</td>
+      </tr>
+
+      <tr>
+        <td>
+            <a href="https://www.serebii.net/abilitydex/runaway.shtml")>Run-Away</a>
+        </td>
+        <td>Except for trainer battles, can always run from battle. It still cannot switch during Mean Look or Block.</td>
+      </tr>
+
+</table>
+
+<br>
+<br>
+
+<table>
+    <tr>
+      <th>Ability</th>
+      <th>Basic Description</th>
+    </tr>
+
+    {% for name, ability in able_dict.items() %}
+    <tr>
+      <td>{{ability.title()}}</td>
+      <td>{{name.title()}}</a></td>
+    </tr>
+    {% endfor %}
+
+
+</table>
+
+
 
 {% endblock content %}
