@@ -36,7 +36,7 @@ def home():   #for home page
         #       the variable "g".
 
 
-@app.route('/pokemon')
+@app.route('/pokemon', methods=['GET', 'POST'])
 def pokemon():
     poke = {}
 
@@ -59,7 +59,7 @@ def pokemon():
 
 
 from .services import getabilities
-@app.route('/abilities')
+@app.route('/abilities', methods=['GET', 'POST'])
 def abilities():
     able_dict_sorted = getabilities()
     
