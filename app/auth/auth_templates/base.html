@@ -19,28 +19,25 @@
         <div class="row justify-content-center">
             <img id="logo" class='img-fluid' src="{{ url_for('auth.static', filename='images/logo.png')}}" alt='Pok&eacute;monAPI' />
         </div>
-        <div class = "row justify-content-center">
-            <div class="col-4">   
-                {% block content %}
-                {% endblock content%}
-            </div>
-
-        </div>
-            <div class="row justify-content-center">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
+        <div class="row justify-content-center">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
                 {% for category, message in messages %}
                 <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                        {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 {% endfor %}
-                {% endif %}
-                {% endwith %}
+            {% endif %}
+        {% endwith %}
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                {% block content %}
+                {% endblock content %}
             </div>
-
         </div>
     </div>
 

@@ -8,8 +8,16 @@ from .authforms import LoginForm, RegistrationForm
 def login():
     lform = LoginForm()
     if request.method == 'POST':
-        print(lform.data)
-        return 'Thanks for logging in'
+        if lform.validate_on_submit():
+
+            username = lform.username.data
+            password = lform.password.data
+            print('formdata:', username, password)
+            flash(f"{username}, You have successfully signed in!", category = 'success')
+            return redirect(url_for('home'))
+        
+        else:
+            return redirect(url_for('auth.login'))
 
     return render_template('signin.html', form=lform)
 
@@ -32,4 +40,5 @@ def register():
         else: # something went wrong with registration
             flash('Sorry, passwords do not match. Please try again.', 'danger')
             return redirect(url_for('auth.register'))
-    return render_template('base.html', form=form)
+    elif request.method == 'GET':
+        return render_template('register.html', form=form)
