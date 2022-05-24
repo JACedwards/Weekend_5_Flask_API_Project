@@ -4,10 +4,18 @@ auth = Blueprint('auth', __name__, template_folder='auth_templates', url_prefix=
 
 from .authforms import LoginForm, RegistrationForm
 
-@auth.route('/login')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
-    lform = LoginForm
+    lform = LoginForm()
+    if request.method == 'POST':
+        print(lform.data)
+        return 'Thanks for logging in'
+
     return render_template('signin.html', form=lform)
+
+
+
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
