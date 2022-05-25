@@ -14,13 +14,6 @@ from datetime import datetime
 from uuid import uuid4
 from werkzeug.security import generate_password_hash
 
-class Animal(db.Model):
-    id = db.Column(db.Integer, primary_key=True) 
-    name = db.Column(db.String(50), nullable=False)
-    latin = db.Column(db.String(255), default=None)
-    created = db.Column(db.DateTime, default=datetime.utcnow())
-    cool = db.Column(db.Boolean, default=True) 
-
 class User(db.Model, UserMixin):
     id = db.Column(db.String(40), primary_key=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
@@ -37,3 +30,34 @@ class User(db.Model, UserMixin):
         self.last_name = last_name.title()
         self.id = str(uuid4())
         self.password = generate_password_hash(password)
+
+
+
+class Animal(db.Model):
+    id = db.Column(db.String, primary_key=True) 
+    species = db.Column(db.String(50), nullable=False)
+    latin_name = db.Column(db.String(255), default=None)
+    size_cm = db.Column(db.Integer)
+    diet = db.Column(db.String(255))
+    lifespan = db.Column(db.String(255))
+    description = db.Column(db.String(255), nullable=False)
+    image = db.Column(db.String(255), default=None)
+    price = db.Column(db.Float(2), nullable=False)
+    created_on = db.Column(db.DateTime, default=datetime.utcnow())
+
+    def __init__(self, dict):
+        #required
+        self.id = str(uuid4())
+        self.species=dict['species'].title()
+        self.description = dict['description']
+        self.price = dict['price']
+        #optional
+        self.image = dict.get('image')
+        self.size = dict.get('size_cm', 0)
+        self.latin_name = dict.get('latin_name', 'unknown')
+        self.diet = dict.get('diet', 'unknown')
+        self.lifespan = dict.get('lifespan', 0)
+
+    
+
+
