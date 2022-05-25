@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from app.models import User
+from app.models import User, db
 from werkzeug.security import check_password_hash
 from flask_login import login_user, current_user, login_required, logout_user
 
@@ -39,15 +39,25 @@ def register():
     form = RegistrationForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            # check db
-            # access form data
-            print(form.data) # all data as a dict
-            print(form.email.data) # specifically the data of the email field
-            flash('Welcome! Thank you for registering!', 'info')
+            # access form data and use it to create a new user object
+            print('formdata:', form.data) # all data as a dict
+            newuser = User(form.username.data, form.email.data, form.password.data, form.first_name.data, form.last_name.data)
+            print('newly created user object:', newuser)
+            try:
+                # check db to see if this username or email already exists (use try/except)
+                db.session.add(newuser)
+                db.session.commit()
+            except:
+                flash('Username or email already registered! Please try a different one.', category='danger')
+                return redirect(url_for('auth.register'))
+            # log in the new user
+            login_user(newuser)
+            flash(f'Welcome! Thank you for registering, {newuser.username}!', 'info')
             return redirect(url_for('home'))
         else: # something went wrong with registration
             flash('Sorry, passwords do not match. Please try again.', 'danger')
             return redirect(url_for('auth.register'))
+    # GET -> create form instance, then rendering the hmtl template with that form
     elif request.method == 'GET':
         return render_template('register.html', form=form)
 
