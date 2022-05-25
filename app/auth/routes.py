@@ -13,6 +13,7 @@ def login():
             username = lform.username.data
             password = lform.password.data
             print('formdata:', username, password)
+            user = User.query
             flash(f"{username}, You have successfully signed in!", category = 'success')
             return redirect(url_for('home'))
         
