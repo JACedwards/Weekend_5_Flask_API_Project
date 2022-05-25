@@ -35,29 +35,26 @@ def login():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
-    # utilize our form for both GET and POST
+
     form = RegistrationForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            # access form data and use it to create a new user object
-            print('formdata:', form.data) # all data as a dict
+            print('formdata:', form.data) 
             newuser = User(form.username.data, form.email.data, form.password.data, form.first_name.data, form.last_name.data)
             print('newly created user object:', newuser)
             try:
-                # check db to see if this username or email already exists (use try/except)
                 db.session.add(newuser)
                 db.session.commit()
             except:
                 flash('Username or email already registered! Please try a different one.', category='danger')
                 return redirect(url_for('auth.register'))
-            # log in the new user
             login_user(newuser)
             flash(f'Welcome! Thank you for registering, {newuser.username}!', 'info')
             return redirect(url_for('home'))
-        else: # something went wrong with registration
+        else: 
             flash('Sorry, passwords do not match. Please try again.', 'danger')
             return redirect(url_for('auth.register'))
-    # GET -> create form instance, then rendering the hmtl template with that form
+
     elif request.method == 'GET':
         return render_template('register.html', form=form)
 

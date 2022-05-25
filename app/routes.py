@@ -25,18 +25,7 @@ def home():   #for home page
     greeting = 'Calling all Pokmon Newbies.  \nStart Pokemon for Morons here:'
     print(greeting)
     
-    return render_template('index.html', greeting = greeting)  #a call to the render_template function
-        #so what will be returned is the return value of the render_template() function 
-        #Then,pass into render_template function () the name of the html file I am trying to render
-        #to check this, make sure in virtual environment,
-            #flask run
-            #access URL from command line, not directly from html file
-    #render_template() accepts arbitrary number of arguments/parameters.
-        #so, to get greeting in example above to show on html page, need to 
-        #   give it a variable name (g=greeting) 
-        #   then add it as parameter  to render_template, along with the html endpoint url.
-        #   only then can it be used as a variable in a Jinma expression on the html page using
-        #       the variable "g".
+    return render_template('index.html', greeting = greeting)  
 
 
 @app.route('/pokemon', methods=['GET', 'POST'])
