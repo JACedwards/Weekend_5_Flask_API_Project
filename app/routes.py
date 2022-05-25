@@ -1,6 +1,7 @@
 #url default:  http://127.0.0.1:5000
 
 #1 Next line is to access the Flask object (from __init__ file)
+
 from app import app
 
 #route decorator:
@@ -14,6 +15,8 @@ from flask import render_template
 
 #API call:  need to import the requests module (which needs to be installed:  pip install requests)
 import requests as r
+from flask_login import login_required
+
 
 
 @app.route('/')  #Each @app is for a separate html page
@@ -59,7 +62,9 @@ def pokemon():
 
 
 from .services import getabilities
+
 @app.route('/abilities', methods=['GET', 'POST'])
+@login_required
 def abilities():
     able_dict_sorted = getabilities()
     
