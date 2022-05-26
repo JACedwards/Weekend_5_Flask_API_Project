@@ -58,6 +58,20 @@ class Animal(db.Model):
         self.diet = dict.get('diet', 'unknown')
         self.lifespan = dict.get('lifespan', 0)
 
-    
+    def to_dict(self):
+        return {
+        'id': self.id,  
+        'species': self.species, 
+        'latin_name': self.latin_name, 
+        'size_cm' : self.size_cm, 
+        'diet': self.diet, 
+        'lifespan': self.lifespan, 
+        'description': self.description, 
+        'image': self.image, 
+        'price': self.price, 
+        'created_on': self.created_on, 
+
+        }
+
 
 
