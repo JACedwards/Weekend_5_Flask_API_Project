@@ -35,13 +35,13 @@ class User(db.Model, UserMixin):
 
 class Animal(db.Model):
     id = db.Column(db.String, primary_key=True) 
-    species = db.Column(db.String(50), nullable=False)
+    species = db.Column(db.String(50), nullable=False, unique=True)
     latin_name = db.Column(db.String(255), default=None)
     size_cm = db.Column(db.Integer)
     diet = db.Column(db.String(255))
     lifespan = db.Column(db.String(255))
     description = db.Column(db.String(255), nullable=False)
-    image = db.Column(db.String(255), default=None)
+    image = db.Column(db.String(1001), default=None)
     price = db.Column(db.Float(2), nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.utcnow())
 
@@ -72,6 +72,12 @@ class Animal(db.Model):
         'created_on': self.created_on, 
 
         }
+
+    def from_dict(self, dict):
+        print(dict)
+        for key in dict:
+            getattr(self, key)
+            setattr(self, key, dict[key])
 
 
 
