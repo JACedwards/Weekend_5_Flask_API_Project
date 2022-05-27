@@ -1,0 +1,16 @@
+Ready to start at minute 45:19 of flask tokenization am video:  
+
+when ran a, b, c below, should have generated a <User sljfd> object, but didn'to
+This also meant that an attempt ot assign an api_token to that user did not work
+
+>>> a = User.query.get('6b1bae7b-c354-47f0-92a0-5eb8b7570767')
+>>> a
+>>> b = User.query.get('771e1fd1-2a0e-4049-b52d-a8f9b9661088')                                    
+>>> b
+>>> c = User.query.get('Craig')
+>>> c
+>>> c.api_token = token_hex(16)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'NoneType' object has no attribute 'api_token'
+>>>
